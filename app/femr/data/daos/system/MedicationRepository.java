@@ -146,10 +146,9 @@ public class MedicationRepository implements IMedicationRepository {
     public IMedication createNewMedication (String medicationName, List<IMedicationGenericStrength> medicationGenericStrengths, IConceptMedicationForm conceptMedicationForm){
         IMedication medication = null;
         try {
-        if (medicationName == null || medicationGenericStrengths == null || conceptMedicationForm == null) {
-            return null;
+        if (medicationName == null) // Commented as part of the reported bug in FEMR-208.  || medicationGenericStrengths == null || conceptMedicationForm == null) {
+        {    return null;
         }
-
         // Create a new medication in the DB
         medication = dataModelMapper.createMedication(medicationName, medicationGenericStrengths, conceptMedicationForm);
         Ebean.save(medication);

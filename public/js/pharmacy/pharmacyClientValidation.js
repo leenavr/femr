@@ -5,7 +5,11 @@ $(document).ready(function () {
             alert("Duplicate prescriptions can not be submitted.");
             event.preventDefault();
         }
-
+        //FEMR-138 Don't let a user submit on Pharmacy unless they check the disclaimer
+        if (! $("input:checkbox[name='disclaimer']").is(':checked')) {
+            alert("To proceed with the submission, please sign the disclaimer :: The patient was counseled on the risks and side effects of the medications dispensed:: ");
+            event.preventDefault();
+        }
         return pass;
     })
 });
