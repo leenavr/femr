@@ -1,11 +1,11 @@
-@(treatmentTab: femr.common.models.TabItem, prescriptions: List[femr.common.models.PrescriptionItem], medicationAdministrationItems: List[femr.common.models.MedicationAdministrationItem], problems: List[femr.common.models.ProblemItem])
+@(ProcedureCounselingTab: femr.common.models.TabItem, prescriptions: List[femr.common.models.PrescriptionItem], medicationAdministrationItems: List[femr.common.models.MedicationAdministrationItem], problems: List[femr.common.models.ProblemItem])
 
 @import femr.ui.views.html.partials.medical.tabs.prescriptionRow
 
 <div class="controlWrap hidden" id="treatmentControl">
     <div class="form-group">
         <label for="assessment">Assessment</label>
-        @defining(treatmentTab.getTabFieldItemByName(null, "assessment")) { assessment =>
+        @defining(ProcedureCounselingTab.getTabFieldItemByName(null, "assessment")) { assessment =>
             <input name="tabFieldItems[@assessment.getIndex].name" type="text" class="hidden" value="assessment"/>
             <textarea rows="3" name="tabFieldItems[@assessment.getIndex].value" class="form-control input-sm">@assessment.getValue</textarea>
         }
@@ -67,11 +67,18 @@
     <div class="form-group">
         @*Changed text as part of requirement FEMR-186
         Change the name of the "Treatment Given" field
-        Comment the line :: <label for="treatment">Treatment Given</label>*@
+        Comment the line :: <label for="treatment">Treatment Given</label>
         <label for="treatment">Procedure/Counseling</label>
         @defining(treatmentTab.getTabFieldItemByName(null, "treatment")) { treatment =>
             <input name="tabFieldItems[@treatment.getIndex].name" type="text" class="hidden" value="treatment"/>
-            <textarea rows="3" name="tabFieldItems[@treatment.getIndex].value" class="form-control input-sm" placeholder="Ex: Suturing, Ultrasound, Splint, etc...">@treatment.getValue</textarea>
+            <textarea rows="3" name="tabFieldItems[@treatment.getIndex].value" class="form-control input-sm"
+            placeholder="Ex: Suturing, Ultrasound, Splint, etc...">@treatment.getValue</textarea>*@
+        <label for="Procedure/Counseling">Procedure/Counseling</label>
+        @defining(ProcedureCounselingTab.getTabFieldItemByName(null, "Procedure/Counseling")) { ProcedureCounseling =>
+            <input name="tabFieldItems[@ProcedureCounseling.getIndex].name" type="text" class="hidden" value="Procedure/Counseling"/>
+            <textarea rows="3" name="tabFieldItems[@ProcedureCounseling.getIndex].value" class="form-control input-sm"
+            placeholder="Ex: Suturing, Ultrasound, Splint, etc...">@ProcedureCounseling.getValue</textarea>
+
         }
     </div>
 </div>
